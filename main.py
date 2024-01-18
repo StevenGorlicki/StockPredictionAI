@@ -1,17 +1,22 @@
-# This is a sample Python script.
+from data_preprocessing import load_data, normalize_data, create_sequences
+from lstm_model import LSTMStockPredictor
+from train_model import train_model
+from plot import predict_and_plot
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+if __name__ == "__main__":
+    file_name = "Stock_Data/AAPL.csv"
 
+    # Load and split data
+    train_df, test_df = load_data(file_name, test_size=0.2)
+    test_df = test_df.reset_index(drop=True)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-    print("commit test")
+    seq_length = 5
+    # Train model
+    model, scaler = train_model(train_df, input_size=1, hidden_layer_size=75, output_size=1, epochs=100)
 
+    # Prepare test data
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    test_df['Close'] = scaler.transform(test_df['Close'].values.reshape(-1, 1))
+    if len(test_df) > seq_length:
+        x_test, y_test = create_sequences(test_df['Close'], seq_length)
+        predict_and_plot(model, x_test, y_test, scaler)
