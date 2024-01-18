@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     seq_length = 5
     # Train model
-    model, scaler = train_model(train_df, input_size=1, hidden_layer_size=75, output_size=1, epochs=100)
+    model, scaler = train_model(train_df, input_size=1, hidden_layer_size=75, output_size=1, epochs=80)
 
     # Prepare test data
 

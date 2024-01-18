@@ -16,7 +16,7 @@ def train_model(train_df, input_size=1, hidden_layer_size=100, output_size=1, ep
     # Initialize model
     model = LSTMStockPredictor(input_size, hidden_layer_size, output_size)
     loss_function = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    optimizer = optim.Adam(model.parameters(), lr=0.0005)
 
     # Training loop
     for epoch in range(epochs):
