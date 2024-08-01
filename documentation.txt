@@ -1,0 +1,3 @@
+Once created dev account
+- Setup Venv
+- Pip Install Requests
