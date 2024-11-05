@@ -2,8 +2,8 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 def main():
-    appKey = 'Fq5EQ7kpZI4ZxstIWE8oTuf5lCqAxeu4'
-    secretKey = 'Os2Sn5KyQjsdlhMo'
+    appKey = 'PleaseDontHackMe'
+    secretKey = 'PleaseDontHackMe'
     token_url = 'https://api.schwab.com/oauth/token'
 
     response = requests.post(token_url, auth=HTTPBasicAuth(appKey, secretKey), data={'grant_type': 'client_credentials'})
